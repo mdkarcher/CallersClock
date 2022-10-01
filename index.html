@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Caller's Clock</title>
+    <link href="styles/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="scripts/main.js" defer></script>
+  </head>
+  <body>
+    <div class="num-display" id="clock">
+      <span id="clock-hours">12</span>:<span id="clock-mins">00</span><span id="clock-ampm">am</span>
+    </div>
+    <div id="watch">
+      <div class="num-display">
+        <span id="watch-mins">0</span>:<span id="watch-secs">00</span>.<span id="watch-tenths">0</span>
+      </div> 
+      <div class="button-bank" id="watch-buttons">
+        <button id="watch-start">Start</button>
+        <button id="watch-other">Other</button>
+        <button id="watch-pause">Pause</button>
+        <button id="watch-resume">Resume</button>
+        <button id="watch-reset">Reset</button>
+      </div>
+    </div>
+    <div id="bpm">
+      <div class="num-display">
+        <span id="bpm-disp">BPM</span>
+      </div>
+      <div class="button-bank" id="bpm-buttons">
+        <button id="bpm-sample">Sample</button>
+      </div>
+    </div>
+  </body>
+</html>

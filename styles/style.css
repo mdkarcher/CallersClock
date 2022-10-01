@@ -1,0 +1,71 @@
+html {
+  font-size: 48px;
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  background-color: black;
+}
+
+button {
+  display: inline;
+  background-color: #333333;
+  color: white;
+  border-radius: 5px;
+  border-style: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  outline: none;
+  padding: 5px 8px;
+  box-sizing: border-box;
+  width: 6em;
+  margin: 2px;
+}
+
+button:hover {
+  background-color: #555555;
+}
+
+.num-display {
+  display: flex;
+  justify-content: center;
+}
+
+.button-bank {
+  display: flex;
+  justify-content: center;
+}
+
+#clock {
+  /*background-color: aqua;*/
+}
+
+#watch {
+  /*background-color: aquamarine;*/
+}
+
+#watch button {
+  /*width: 6em;*/
+}
+
+#watch-buttons {
+  /*background-color: black;*/
+}
+
+#bpm {
+  /*background-color: bisque;*/
+}
+
+#bpm-buttons {
+  /*background-color: black;*/
+}
+
+#watch-pause {
+  display: none;
+}
+
+#watch-resume {
+  display: none;
+}
+
+#watch-reset {
+  display: none;
+}
