@@ -117,7 +117,7 @@ function bpmSample() {
     bpmDisplay.innerHTML = "BPM"
   } else {
     let elapsed = (Date.now()-bpmStartTime) / 60000;
-    if (elapsed < 0.05) {
+    if (elapsed < 4.0 / 160.0) {
       if (!bpmBeatSampling) {
         bpmBeatSampling = true;
         bpmBeats = [];
