@@ -1,5 +1,5 @@
 html {
-  font-size: 48px;
+  font-size: 96px;
   font-family: 'Open Sans', sans-serif;
   color: white;
   background-color: black;
@@ -12,11 +12,11 @@ button {
   border-radius: 5px;
   border-style: none;
   font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
+  font-size: 36px;
   outline: none;
   padding: 5px 8px;
   box-sizing: border-box;
-  width: 6em;
+  width: 9em;
   margin: 2px;
 }
 
@@ -27,6 +27,7 @@ button:hover {
 .num-display {
   display: flex;
   justify-content: center;
+  margin: 15px;
 }
 
 .button-bank {
