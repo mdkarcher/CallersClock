@@ -10,10 +10,10 @@ Caller's Clock is an attempt to satisfy my wishlist of features for a stopwatch/
 - BPM calculator (done)
   - tap on the beat BPM calculator (done)
   - phrase to phrase (4, 8, 16, 32, 64 beats) BPM calculator (done)
-- Record when each dance starts
+- Record when each dance starts (done)
   - Export list
   - Edit entry names
-  - Have other timestamps (for waltz start, break start, etc.)
+  - Have other timestamps (for waltz start, break start, etc.) (done)
   - Calculate average dance start-to-start
 
 ## License
