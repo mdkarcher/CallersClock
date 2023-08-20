@@ -24,30 +24,52 @@ var bpmBeats = [];
 var bpmPhraseSampling = false; // Maybe don't need this
 var bpmStartTime;
 
+var timesList = document.getElementById("times-list");
+var timesClearButton = document.getElementById("times-clear");
+
 var timer;
 
 function sum(x) {
   return x.reduce((a, b) => a+b, 0);
 }
 
-function tick() {
+function fmtTime() {
   let date = new Date;
   let hh = date.getHours();
   let mm = date.getMinutes();
   let ampm = "am";
-
+  if (hh >= 12) {
+    ampm = "pm";
+  }
+  
+  if (hh > 12) {
+    hh = hh - 12;
+  }
   if (hh == 0) {
     hh = 12;
   }
-  if (hh > 12) {
-    hh = hh - 12;
-    ampm = "pm";
-  }
+  
   mm = (mm < 10) ? "0" + mm : mm;
   
-  clockHours.innerHTML = hh;
-  clockMins.innerHTML = mm;
-  clockAMPM.innerHTML = ampm;
+  return {hh:hh, mm:mm, ampm:ampm};
+}
+
+function fmtElapsed() {
+  let elapsed = watchPauseElapsed + Date.now() - watchStartTime;
+  let wMins = Math.floor(elapsed / (1000 * 60));
+  let wSecs = Math.floor(elapsed / (1000)) % 60;
+  wSecs = (wSecs < 10) ? "0" + wSecs : wSecs;
+  let wTenths = Math.floor(elapsed / (100)) % 10;
+  
+  return {wMins:wMins, wSecs:wSecs, wTenths:wTenths};
+}
+
+function tick() {
+  let now = fmtTime();
+  
+  clockHours.innerHTML = now.hh;
+  clockMins.innerHTML = now.mm;
+  clockAMPM.innerHTML = now.ampm;
   
   if (watchTicking) {
     watchTick();
@@ -55,14 +77,11 @@ function tick() {
 }
 
 function watchTick() {
-  let elapsed = watchPauseElapsed + Date.now() - watchStartTime;
-  let wMins = Math.floor(elapsed / (1000 * 60));
-  let wSecs = Math.floor(elapsed / (1000)) % 60;
-  wSecs = (wSecs < 10) ? "0" + wSecs : wSecs;
-  let wTenths = Math.floor(elapsed / (100)) % 10;
-  watchMins.innerHTML = wMins;
-  watchSecs.innerHTML = wSecs;
-  watchTenths.innerHTML = wTenths;
+  let elapsed = fmtElapsed();
+  
+  watchMins.innerHTML = elapsed.wMins;
+  watchSecs.innerHTML = elapsed.wSecs;
+  watchTenths.innerHTML = elapsed.wTenths;
 }
 
 function startWatch() {
@@ -74,6 +93,22 @@ function startWatch() {
   watchOtherButton.style.display = "none";
   watchPauseButton.style.display = "inline";
   watchResetButton.style.display = "inline";
+  
+  let now = fmtTime();
+  let timeStr = now.hh + ":" + now.mm + now.ampm;
+  let newTime = document.createElement("li");
+  newTime.textContent = timeStr;
+  timesList.appendChild(newTime);
+  timesClearButton.style.display = "inline";
+}
+
+function otherWatch() {
+  let now = fmtTime();
+  let timeStr = "*" + now.hh + ":" + now.mm + now.ampm;
+  let newTime = document.createElement("li");
+  newTime.textContent = timeStr;
+  timesList.appendChild(newTime);
+  timesClearButton.style.display = "inline";
 }
 
 function pauseWatch() {
@@ -145,11 +180,19 @@ function bpmSample() {
   }
 }
 
-watchStartButton.addEventListener('pointerdown', startWatch)
-watchPauseButton.addEventListener('pointerdown', pauseWatch)
-watchResumeButton.addEventListener('pointerdown', resumeWatch)
-watchResetButton.addEventListener('pointerdown', resetWatch)
+function clearTimes() {
+  timesList.innerHTML = "";
+  timesClearButton.style.display = "none";
+}
 
-bpmButton.addEventListener('pointerdown', bpmSample)
+watchStartButton.addEventListener('pointerdown', startWatch);
+watchOtherButton.addEventListener('pointerdown', otherWatch);
+watchPauseButton.addEventListener('pointerdown', pauseWatch);
+watchResumeButton.addEventListener('pointerdown', resumeWatch);
+watchResetButton.addEventListener('pointerdown', resetWatch);
+
+bpmButton.addEventListener('pointerdown', bpmSample);
+
+timesClearButton.addEventListener('pointerdown', clearTimes);
 
 timer = setInterval(tick, 100);
